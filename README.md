@@ -20,4 +20,4 @@ Mọi người chú ý CLEAN project trước khi push để xoá các file ko c
 
 ### ERD:
 
-https://github.com/jayd-pi/UniPortal/assets/101060912/ca19c7a5-ec13-4ed7-b8e8-9375c2bbe4db
+![SWD392 Physical](https://github.com/jayd-pi/UniPortal/assets/101060912/ca19c7a5-ec13-4ed7-b8e8-9375c2bbe4db)
