@@ -1,4 +1,3 @@
-"use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -27,7 +26,13 @@ export const columns: ColumnDef<Institution>[] = [
   {
     accessorKey: "avatarLink",
     header: "IMAGE",
-    cell: ({ row }) => <img src={row.original.avatarLink} className="w-12 h-12" alt={row.original.name}/>
+    cell: ({ row }) => (
+      <img
+        src={row.original.avatarLink}
+        className="w-12 h-12"
+        alt={row.original.name}
+      />
+    ),
   },
   {
     accessorKey: "name",

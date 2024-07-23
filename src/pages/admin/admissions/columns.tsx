@@ -1,4 +1,3 @@
-"use client";
 import { ColumnDef, RowSelection } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -29,7 +28,9 @@ export const columns: ColumnDef<AdmissionPlans>[] = [
   {
     accessorKey: "name",
     header: "NAME",
-    cell: ({ row }) => <LinkText navigateTo={`${row.original.id}`}>{row.original.name}</LinkText>
+    cell: ({ row }) => (
+      <LinkText navigateTo={`${row.original.id}`}>{row.original.name}</LinkText>
+    ),
   },
   {
     accessorKey: "year",
@@ -38,7 +39,7 @@ export const columns: ColumnDef<AdmissionPlans>[] = [
   {
     accessorKey: "insitution",
     header: "INSTITUTION",
-    cell: ({ row }) => <div>{row.original.institution.name}</div>
+    cell: ({ row }) => <div>{row.original.institution.name}</div>,
   },
   {
     id: "actions",

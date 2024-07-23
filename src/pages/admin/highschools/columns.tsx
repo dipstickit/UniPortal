@@ -1,4 +1,3 @@
-"use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -31,9 +30,7 @@ export const columns: ColumnDef<Highschool>[] = [
   {
     accessorKey: "cityProvince",
     header: "CITY PROVINCE",
-    cell: ({ row }) => (
-      <div>{row.original.cityProvince.name}</div>
-    ),
+    cell: ({ row }) => <div>{row.original.cityProvince.name}</div>,
   },
   {
     id: "actions",

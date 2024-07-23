@@ -1,4 +1,3 @@
-"use client";
 import { ColumnDef } from "@tanstack/react-table";
 import { CellAction } from "./cell-action";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -8,9 +7,7 @@ export const columns: ColumnDef<Major>[] = [
   {
     accessorKey: "",
     header: "NO.",
-    cell: ({ row }) => (
-      <div className="pl-2">{row.index + 1}</div>
-    ),
+    cell: ({ row }) => <div className="pl-2">{row.index + 1}</div>,
   },
   {
     accessorKey: "code",
@@ -23,8 +20,6 @@ export const columns: ColumnDef<Major>[] = [
   {
     accessorKey: "department",
     header: "KHỐI NGÀNH",
-    cell: ({ row }) => (
-      <div>{row.original.department.name}</div>
-    ),
+    cell: ({ row }) => <div>{row.original.department.name}</div>,
   },
 ];
