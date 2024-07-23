@@ -1,10 +1,11 @@
-import { Heading } from '@/components/common/Heading'
-import { Separator } from '@/components/ui/separator'
-import React, { useEffect } from 'react'
-import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { Button } from "@/components/ui/button"
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+import { Heading } from "@/components/common/Heading";
+import { Separator } from "@/components/ui/separator";
+import React, { useEffect } from "react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -13,7 +14,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form"
+} from "@/components/ui/form";
 
 import {
   Select,
@@ -21,42 +22,45 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Input } from "@/components/ui/input"
-import { DropdownSelect } from '@/components/common/DropdownSelect'
-import { register } from 'module'
-import { useUpdateInstitutionMutation } from '@/app/services/institution'
-import { useAppDispatch } from '@/app/hooks'
-import { roles } from '@/app/constants'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import Breadcrumbs from '@/components/ui/breadcrumbs'
-import { toast } from '@/components/ui/use-toast'
-import { useGetHighschoolQuery, useUpdateHighschoolMutation } from '@/app/services/highschool'
-import { useGetCityProvincesQuery } from '@/app/services/address'
-
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
+import { DropdownSelect } from "@/components/common/DropdownSelect";
+import { register } from "module";
+import { useUpdateInstitutionMutation } from "@/app/services/institution";
+import { useAppDispatch } from "@/app/hooks";
+import { roles } from "@/app/constants";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import Breadcrumbs from "@/components/ui/breadcrumbs";
+import { toast } from "@/components/ui/use-toast";
+import {
+  useGetHighschoolQuery,
+  useUpdateHighschoolMutation,
+} from "@/app/services/highschool";
+import { useGetCityProvincesQuery } from "@/app/services/address";
 
 const formSchema = z.object({
   name: z.string(),
   description: z.string(),
-  cityProvinceId: z.string()
-})
+  cityProvinceId: z.string(),
+});
 
 const UpdateHighSchool = () => {
-  const { id } = useParams()
-  const [updatehighschool, { isLoading }] = useUpdateHighschoolMutation()
-  const cityProvince = useGetCityProvincesQuery({ all: true }).data?.cityProvinces
-  const { data } = useGetHighschoolQuery(id!)
+  const { id } = useParams();
+  const [updatehighschool, { isLoading }] = useUpdateHighschoolMutation();
+  const cityProvince = useGetCityProvincesQuery({ all: true }).data
+    ?.cityProvinces;
+  const { data } = useGetHighschoolQuery(id!);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: data?.name,
       description: data?.description,
-      cityProvinceId: data?.cityProvince?.id?.toString()
-    }
-  })
-  console.log(data)
+      cityProvinceId: data?.cityProvince?.id?.toString(),
+    },
+  });
+  console.log(data);
 
   useEffect(() => {
     form.setValue("name", data?.name!);
@@ -66,14 +70,14 @@ const UpdateHighSchool = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     await updatehighschool({
-      body: values
+      body: values,
     }).then(() => {
-      navigate('/admin/high-schools')
+      navigate("/admin/high-schools");
       toast({
         title: "Update successfully",
-        description: (new Date()).toUTCString(),
-      })
-    })
+        description: new Date().toUTCString(),
+      });
+    });
   }
   return (
     <div className="flex flex-col py-4 gap-4">
@@ -81,22 +85,28 @@ const UpdateHighSchool = () => {
         parents={[
           {
             label: "Dashboard",
-            url: "/admin"
+            url: "/admin",
           },
           {
             label: "Highschools",
-            url: "/admin/high-schools "
+            url: "/admin/high-schools ",
           },
         ]}
         currentPage="Update"
       />
       <div className="flex items-start justify-between">
-        <Heading title='Update an highschool' description='Add a new highschool' />
+        <Heading
+          title="Update an highschool"
+          description="Add a new highschool"
+        />
       </div>
       <Separator />
-      <div className='flex'>
+      <div className="flex">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 w-1/2">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="space-y-4 w-1/2"
+          >
             <FormField
               control={form.control}
               name="name"
@@ -104,7 +114,11 @@ const UpdateHighSchool = () => {
                 <FormItem>
                   <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input placeholder="School Name" {...field} defaultValue={field.value} />
+                    <Input
+                      placeholder="School Name"
+                      {...field}
+                      defaultValue={field.value}
+                    />
                   </FormControl>
                   {/* <FormDescription>
                   This is your public display name.
@@ -120,7 +134,11 @@ const UpdateHighSchool = () => {
                 <FormItem>
                   <FormLabel>Description</FormLabel>
                   <FormControl>
-                    <Input placeholder="Description for the highschool" {...field} defaultValue={field.value} />
+                    <Input
+                      placeholder="Description for the highschool"
+                      {...field}
+                      defaultValue={field.value}
+                    />
                   </FormControl>
                   {/* <FormDescription>
                   This is your public display name.
@@ -136,18 +154,21 @@ const UpdateHighSchool = () => {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>City Province</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue placeholder="Select a city province" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {
-                        cityProvince?.map(item =>
-                          <SelectItem value={item.id.toString()} key={item.id}>{item.name}</SelectItem>
-                        )
-                      }
+                      {cityProvince?.map((item) => (
+                        <SelectItem value={item.id.toString()} key={item.id}>
+                          {item.name}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   {/* <FormDescription>
@@ -162,9 +183,8 @@ const UpdateHighSchool = () => {
           </form>
         </Form>
       </div>
-
     </div>
-  )
-}
+  );
+};
 
-export default UpdateHighSchool
+export default UpdateHighSchool;

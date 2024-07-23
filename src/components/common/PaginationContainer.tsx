@@ -6,12 +6,10 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
-import React from 'react'
+} from "@/components/ui/pagination";
+import React from "react";
 
-type Props = {}
-
-const PaginationContainer = (props: Props) => {
+const PaginationContainer = (props: any) => {
   return (
     <Pagination>
       <PaginationContent>
@@ -29,7 +27,7 @@ const PaginationContainer = (props: Props) => {
         </PaginationItem>
       </PaginationContent>
     </Pagination>
-  )
-}
+  );
+};
 
-export default PaginationContainer
+export default PaginationContainer;
